@@ -1,0 +1,17 @@
+package sandoval.brian.GamesShop.models;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Juego {
+   private Long id;
+   private String titulo;
+   private String descripcion;
+
+   private String portadaUrl;
+}
