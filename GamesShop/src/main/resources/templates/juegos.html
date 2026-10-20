@@ -1,23 +1,29 @@
-<th:block th:replace="~{layout/base :: layout(~{::title}, ~{::main})}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
     <title>Catálogo de juegos - GameShop👻</title>
+</head>
+<body>
+<main class="container">
+    <div>
+        <h2>Catálogo de juegos</h2>
+        <a th:href="@{/juego/nuevo}">+Nuevo juego</a>
+    </div>
 
-    <main class="container">
-        <div>
-            <h2>Catálogo de juegos</h2>
-            <a th:href="@{/juegos/nuevo}">+Nuevo juego</a>
-        </div>
-
-        <div class="grid">
-            <div class="panel juegos" th:each="juego : ${juegos}">
-                <img th:src="${#strings.startsWith(juego.portadaUrl, 'http')} ? ${juego.portadaUrl} : @{/uploads/{img}(img=${juego.portadaUrl})}"
-                     alt="portada juego"
-                     onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400?text=Sin+Imagen'">
-                <div class="game-content">
-                    <h3 th:text="${juego.titulo}">Titulo de juego</h3>
-                    <p th:text="${juego.descripcion}">Descripción del juego</p>
-                </div>
+    <div class="grid">
+        <div class="panel juegos" th:each="juego: ${juegos}">
+            <img th:src="${#strings.startsWith(juego.portadaUrl, 'http')} ? ${juego.portadaUrl} : @{/uploads/{img}(img=${juego.portadaUrl})}"
+                 alt="portada juego"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400?text=Sin+Imagen'">
+            <div class="game-content">
+                <h3 th:text="${juego.titulo}}">Titulo de juego</h3>
+                <p th:text="${juego.descripcion}}"></p>
             </div>
-            <div th:if="${#lists.isEmpty(juegos)}">No hay juegos todavía :(</div>
         </div>
-    </main>
-</th:block>
+        <div th:if="${#lists.isEmpty(juegos}">No hay juegos todavía :(</div>
+    </div>
+
+</main>
+</body>
+</html>
