@@ -1,26 +1,46 @@
-package sandoval.brian.GamesShop.Models;
-
+package sandoval.brian.GamesShop.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data //Genera getters, setters, toString todo lo básico
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "juegos")
 public class Juego {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String titulo;
 
     @Column(length = 1000)
     private String descripcion;
 
-    @Column(name = "pordada_url")
+    @Column(name = "portada_url")
     private String portadaUrl;
 
+    @Column(nullable = false)
     private Double precio;
 
+
     private String categoria;
+
+    // Constructor personalizado de 4 parámetros utilizado en la práctica
+    public Juego(Long id, String titulo, String descripcion, Double precio, String portadaUrl) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.portadaUrl = portadaUrl;
+    }
 
     public Long getId() {
         return id;

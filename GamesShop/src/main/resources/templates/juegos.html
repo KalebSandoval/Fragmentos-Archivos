@@ -1,29 +1,26 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Catálogo de juegos - GameShop👻</title>
-</head>
-<body>
-<main class="container">
-    <div>
-        <h2>Catálogo de juegos</h2>
-        <a th:href="@{/juego/nuevo}">+Nuevo juego</a>
-    </div>
+<th:block th:replace="~{layout/base :: layout(~{::title}, ~{::main})}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title>Catálogo de Juegos - GamesShop</title>
+    <main class="container">
+        <div class="page-header">
+            <h2 class="text-gradient">Catálogo de Juegos</h2>
+            <a th:href="@{/juegos/nuevo}" class="btn btn-primary">+ Nuevo Juego</a>
+        </div>
 
-    <div class="grid">
-        <div class="panel juegos" th:each="juego: ${juegos}">
-            <img th:src="${#strings.startsWith(juego.portadaUrl, 'http')} ? ${juego.portadaUrl} : @{/uploads/{img}(img=${juego.portadaUrl})}"
-                 alt="portada juego"
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400?text=Sin+Imagen'">
-            <div class="game-content">
-                <h3 th:text="${juego.titulo}}">Titulo de juego</h3>
-                <p th:text="${juego.descripcion}}"></p>
+        <div class="grid">
+            <div class="panel juegos" th:each="juego : ${juegos}">
+                <a th:href="@{/juego/{id}(id=${juego.id})}">
+                    <img th:src="${#strings.startsWith(juego.portadaUrl, 'http')} ? ${juego.portadaUrl} : @{/uploads/{img}(img=${juego.portadaUrl})}"
+                         alt="Portada"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400'">
+                    <div class="game-content">
+                        <h3 th:text="${juego.titulo}">Título</h3>
+                        <p th:text="${juego.descripcion}">Descripción</p>
+                    </div>
+            </div>
+
+            <div class="empty" th:if="${#lists.isEmpty(juegos)}">
+                No hay juegos en la bóveda aún. ¡Sé el primero en subir uno!
             </div>
         </div>
-        <div th:if="${#lists.isEmpty(juegos}">No hay juegos todavía :(</div>
-    </div>
-
-</main>
-</body>
-</html>
+    </main>
+</th:block>

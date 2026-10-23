@@ -10,15 +10,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    // Permite tráfico libre (sin login) y desactiva CSRF para que el POST del formulario funcione
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // Permite el paso a todas las rutas sin login
-                )
-                .requestCache(cache -> cache.disable()) // Evita redirecciones antiguas a /juegos.html
-                .csrf(csrf -> csrf.disable());
-
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
         return http.build();
     }
 }

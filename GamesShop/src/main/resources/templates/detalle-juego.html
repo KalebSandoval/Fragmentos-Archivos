@@ -1,0 +1,19 @@
+<th:block th:replace="~{layout/base ::layout(~{::title}, ~{::main})}">
+    <title th:text="${juego.titulo}}"></title>
+    <main>
+        <h2 class="text-gradient" th:text="${juego.titulo}"></h2>
+        <div class="game-detail">
+
+            <div class="game-description">
+                <span class="pill" th:text></span>
+                <img th:src="${#strings.startsWith(juego.portadaUrl, 'http')} ? ${juego.portadaUrl} : @{/uploads/{img}(img=${juego.portadaUrl})}"
+                     alt="Portada"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400'">
+                <a th:href="@{/juegos/editar/{id}(id=${juego.id})}" class="btn-primary">+Añadir nuevo juego</a>
+                <span th:text="${juego.precio}"></span>
+                <p th:text="${juego.descripcion}"></p>
+            </div>
+
+        </div>
+    </main>
+</th:block>
