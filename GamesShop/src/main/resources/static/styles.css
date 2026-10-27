@@ -119,3 +119,30 @@ nav {
 .game-content { padding: 20px; }
 .game-content h3 { margin: 0 0 10px; }
 .game-content p { margin: 0; color: var(--text-muted); font-size: .9rem; }
+
+
+
+.game-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.btn-danger {
+    background: #c0392b;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #e74c3c;
+}
+
+.btn-secondary {
+    background: #45484f;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5b5f68;
+}

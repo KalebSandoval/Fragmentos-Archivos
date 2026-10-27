@@ -1,31 +1,36 @@
 <th:block th:replace="~{layout/base :: layout(~{::title}, ~{::main})}">
-    <title>Subir Juego - GameVault</title>
+    <title th:text="${juego != null and juego.id != null} ? 'Editar Juego - GameVault' : 'Subir Juego - GameVault'">
+        Subir Juego - GameVault</title>
     <main class="container">
         <div class="panel" style="max-width: 600px; margin: 0 auto;">
-            <h2 class="text-gradient" style="margin-top: 0;">Añadir Nuevo Juego</h2>
+            <h2 th:text="${juego != null and juego.id != null} ? 'Editar Juego' : 'Añadir Nuevo Juego'" class="text-gradient" style="margin-top: 0;">Añadir Nuevo Juego</h2>
             <p style="color: var(--secondary); margin-bottom: 30px;">
                 Sube la información y la portada de un nuevo juego a la bóveda.
             </p>
-            <form th:action="@{/juegos}" method="post" enctype="multipart/form-data">
+            <form th:action="${juego != null and juego.id != null} ? @{/juegos/editar/{id}(id=${juego.id})} : @{/juegos}" method="post"
+                  enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="titulo" class="form-label">Título del Juego</label>
-                    <input type="text" id="titulo" name="titulo" required class="form-control">
+                    <input th:value="${juego != null and juego.id != null ? juego.titulo : ''}" type="text" id="titulo" name="titulo" required class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="descripcion" class="form-label">Descripción Breve</label>
-                    <textarea id="descripcion" name="descripcion" rows="4" required class="form-control"
+                    <textarea th:text="${juego != null and juego.id != null ? juego.descripcion : ''}"
+                              id="descripcion" name="descripcion" rows="4" required class="form-control"
                               style="resize: vertical;"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="precio" class="form-label">Precio</label>
-                    <input type="number" id="precio" name="precio" step="0.01" min="0" required class="form-control">
+                    <input th:value="${juego != null and juego.id != null ? juego.precio : ''}" type="number"
+                           id="precio" name="precio" step="0.01" min="0" required class="form-control">
                 </div>
 
                 <div class="form-group">
                     <label for="categoria" class="form-label">Categoría</label>
-                    <input type="text" id="categoria" name="categoria" required class="form-control">
+                    <input th:value="${juego != null and juego.id != null ? juego.categoria : ''}" type="text"
+                           id="categoria" name="categoria" required class="form-control">
                 </div>
 
                 <div class="form-group"
@@ -34,7 +39,7 @@
                         📷 Subir Portada (Imagen)
                     </label>
 
-                    <input type="file" id="portada" name="portada" accept="image/*" required class="form-control"
+                    <input type="file" id="portada" name="portada" accept="image/*"  class="form-control"
                            style="border: none; background: transparent; padding-left: 2rem;">
 
                     <p style=" font-size: 0.8rem; color: var(--secondary); margin-top: 10px; margin-bottom: 0;">
@@ -42,7 +47,7 @@
                     </p>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="margin-top: 10px; width: 100%;">
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px; width: 100%;" th:text="${juego != null and juego.id != null} ? 'Actualizar en la Bóveda' : 'Guardar en la Bóveda'">
                     Guardar en la Bóveda
                 </button>
             </form>

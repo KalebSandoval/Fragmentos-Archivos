@@ -113,6 +113,7 @@ public class GameController {
                     e.printStackTrace();
                 }
             }
+            juegoService.actualizarJuego(juegoExistente);
         }
         return "redirect:/juegos";
     }
@@ -131,7 +132,7 @@ public class GameController {
     }
 
 
-    @PostMapping("/juegos/eliminar{id}")
+    @PostMapping("/juegos/eliminar/{id}")
     public String eliminarJuego(@PathVariable Long id) {
         Juego juego = juegoService.obtenerJuegoPorId(id);
 

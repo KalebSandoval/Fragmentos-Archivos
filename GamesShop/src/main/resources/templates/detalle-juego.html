@@ -9,9 +9,14 @@
                 <img th:src="${#strings.startsWith(juego.portadaUrl, 'http')} ? ${juego.portadaUrl} : @{/uploads/{img}(img=${juego.portadaUrl})}"
                      alt="Portada"
                      onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400'">
-                <a th:href="@{/juegos/editar/{id}(id=${juego.id})}" class="btn-primary">+Añadir nuevo juego</a>
                 <span th:text="${juego.precio}"></span>
                 <p th:text="${juego.descripcion}"></p>
+                <div class="game-actions">
+                    <a th:href="@{/juegos/editar/{id}(id=${juego.id})}" class="btn-primary">Editar juego</a>
+                    <form th:action="@{/juegos/eliminar/{id}(id=${juego.id})}" method="post">
+                        <button type="submit" class="btn-danger">Eliminar</button>
+                    </form>
+                </div>
             </div>
 
         </div>

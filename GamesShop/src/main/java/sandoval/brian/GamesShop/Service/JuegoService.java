@@ -47,6 +47,10 @@ public class JuegoService {
         juegoRepository.save(juego);
     }
 
+    public void actualizarJuego(Juego juego) {
+        juegoRepository.save(juego);
+    }
+
     public List<Juego> buscarPorTitulo(String palabra){
         if(palabra == null || palabra.trim().isEmpty()){
             return listarTodos();
